@@ -13,10 +13,9 @@ router.get('/', (req, res) => {
       }
     }
   )
-    .then(results => 
-      {
-        res.json(results);
-      });
+    .then(results => {
+      res.json(results);
+    });
 });
 
 router.get('/:id', (req, res) => {
@@ -58,28 +57,25 @@ router.put('/:id', (req, res) => {
         res.status(404).json({ message: 'This Category does not exist.' });
         return
       }
-      res.json(categoryData);
+      res.json(results);
 
     })
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
-  route.delete('/:id', (req, res) => {
-    Category.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-      .then(results => {
-        if (!results) {
-          res.status(404).json({ message: 'This Category does not exist.' });
-          return
-        }
-        res.json(categoryData);
-
-      })
+  Category.destroy({
+    where: {
+      id: req.params.id
+    }
   })
+    .then(results => {
+      if (!results) {
+        res.status(404).json({ message: 'This Category does not exist.' });
+        return
+      }
+      res.json(results);
+    });
 });
 
 module.exports = router;
