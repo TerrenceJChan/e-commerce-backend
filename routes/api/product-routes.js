@@ -20,8 +20,7 @@ router.get('/', (req, res) => {
         }
       ]
     }
-  )
-    .then(results => res.json(results));
+  ).then(results => res.json(results));
 });
 
 // get one product
@@ -136,12 +135,12 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   }).then(results => {
-if (!results) {
-  res.status(404).json({message: 'This Product does not exist.'});
-  return;
-} else {
-  res.json(results);
-}
+    if (!results) {
+      res.status(404).json({ message: 'This Product does not exist.' });
+      return;
+    }
+    res.json(results);
+
   })
 });
 

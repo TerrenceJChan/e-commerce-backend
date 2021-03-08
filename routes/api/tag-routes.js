@@ -8,8 +8,7 @@ router.get('/', (req, res) => {
   // be sure to include its associated Product data
   Tag.findAll({
     include: {
-      model: Product,
-      attributes: [product_name]
+      model: Product
     }
   }).then(results => res.json(results));
 });
@@ -22,8 +21,7 @@ router.get('/:id', (req, res) => {
       id: req.params.id
     },
     include: {
-      model: Product,
-      attributes: [product_name]
+      model: Product
     }
   }).then(results => res.json(results));
 });
@@ -49,9 +47,9 @@ router.put('/:id', (req, res) => {
       if (!results) {
         res.status(404).json({ message: 'This Tag does not exist.' })
         return;
-      } else {
-        res.json(results);
       }
+      res.json(results);
+
     });
 });
 
@@ -66,9 +64,9 @@ router.delete('/:id', (req, res) => {
       if (!results) {
         res.status(404).json({ message: 'This Tag does not exist.' })
         return;
-      } else {
-        res.json(results);
       }
+      res.json(results);
+
     });
 });
 

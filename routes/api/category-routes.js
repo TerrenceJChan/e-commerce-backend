@@ -9,11 +9,14 @@ router.get('/', (req, res) => {
     {
       include: {
         model: Product,
-        attributes: ['category_name']
+        attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
       }
     }
   )
-    .then(results => res.json(results))
+    .then(results => 
+      {
+        res.json(results);
+      });
 });
 
 router.get('/:id', (req, res) => {
@@ -24,7 +27,7 @@ router.get('/:id', (req, res) => {
     },
     include: {
       model: Product,
-      attributes: ['category_id']
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
     .then(results => res.json(results));
@@ -54,9 +57,9 @@ router.put('/:id', (req, res) => {
       if (!results) {
         res.status(404).json({ message: 'This Category does not exist.' });
         return
-      } else {
-        res.json(categoryData);
       }
+      res.json(categoryData);
+
     })
 });
 
@@ -72,9 +75,9 @@ router.delete('/:id', (req, res) => {
         if (!results) {
           res.status(404).json({ message: 'This Category does not exist.' });
           return
-        } else {
-          res.json(categoryData);
         }
+        res.json(categoryData);
+
       })
   })
 });
